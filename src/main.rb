@@ -11,8 +11,13 @@ begin
 
     inp = f.read.chomp
     stream = inp.chars.map { |c| parseChar(c) }.compact
-    src_tape = Tape.new(stream,0)
-    p src_tape
+    src_tape = SourceTape.new(stream)
+    # data_tape = DataTape.new
+
+
+    src_tape.parse
+
+
 
 
 

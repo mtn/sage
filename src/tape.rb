@@ -4,11 +4,27 @@ class SourceTape
 
     def initialize(source)
         @tape = source
-        @ind = 0
+        @pos = 0
+        @brackets = {}
+        @lstack = []
     end
 
     def advance
-        @ind += 1
+        @pos += 1
+    end
+
+    def parse
+        for c in @tape
+            if c.is_a? LoopStart
+                @lstack.push(@pos)
+            elsif c.is_a? LoopEnd
+                l = @lstack.pop()
+                @brackets[l] = @pos
+                @brackets[@pos] = l
+            end
+            @pos += 1
+        end
+        p @brackets
     end
 
 end
@@ -17,15 +33,31 @@ class DataTape
 
     def initialize
         @data = Array.new(30000,0)
-        @pos = 15000
+        @pivot = 15000
     end
 
     def shiftLeft
-        @post -= 1
+        @pivot -= 1
     end
 
     def shiftRight
-        @post += 1
+        @pivot += 1
+    end
+
+    def increment
+        @data[@pivot] += 1
+    end
+
+    def decrement
+        @data[@pivot] -= 1
+    end
+
+    def prnt
+        puts @data[@pivot].chr
+    end
+
+    def rd
+        @data[@pivot] = STDIN.getc.bytes[0]
     end
 
 end

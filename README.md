@@ -1,3 +1,3 @@
 # sage
 
-Sage is a brainfuck interpreter.
+Sage is an over-engineered brainfuck interpreter.
