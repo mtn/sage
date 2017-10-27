@@ -17,7 +17,7 @@ class Print < SType; end
 class LoopStart < SType; end
 class LoopEnd < SType; end
 
-class Ignored < SType; end
+class Ignored; end
 
 def parseChar(c)
     case c
@@ -38,6 +38,6 @@ def parseChar(c)
     when ']' then
         LoopEnd.new
     else
-        Ignored.new
+        nil
     end
 end

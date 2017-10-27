@@ -1,5 +1,6 @@
 require_relative 'errors'
 require_relative 'parse'
+require_relative 'tape'
 
 begin
     if ARGV.length > 0
@@ -8,8 +9,10 @@ begin
         raise NoInput, 'No input file'
     end
 
-    i = f.read.chomp
-    p i.chars.map { |c| parseChar(c) }
+    inp = f.read.chomp
+    stream = inp.chars.map { |c| parseChar(c) }.compact
+    tape = Tape.new(stream)
+    p stream
 
 
 
