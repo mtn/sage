@@ -1,17 +1,23 @@
 
-class Increment; end
-class Decrement; end
+class SType
+    def inspect
+        "#{self.class}"
+    end
+end
 
-class ShiftRight; end
-class ShiftLeft; end
+class Increment < SType; end
+class Decrement < SType; end
 
-class Read; end
-class Print; end
+class ShiftRight < SType; end
+class ShiftLeft < SType; end
 
-class LoopStart; end
-class LoopEnd; end
+class Read < SType; end
+class Print < SType; end
 
-class Ignored; end
+class LoopStart < SType; end
+class LoopEnd < SType; end
+
+class Ignored < SType; end
 
 def parseChar(c)
     case c

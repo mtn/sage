@@ -1,4 +1,5 @@
 require_relative 'errors'
+require_relative 'parse'
 
 begin
     if ARGV.length > 0
@@ -8,6 +9,7 @@ begin
     end
 
     i = f.read.chomp
+    p i.chars.map { |c| parseChar(c) }
 
 
 
