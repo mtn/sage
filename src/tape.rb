@@ -59,7 +59,7 @@ class DataTape
     end
 
     def prnt
-        puts @data[@pivot].chr
+        print @data[@pivot].chr
     end
 
     def rd

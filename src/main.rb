@@ -41,7 +41,7 @@ begin
         src_tape.advance
     end
 
-
+    STDOUT.flush
 
 rescue Exception => e
     STDERR.puts "#{e.class}: #{e}"
