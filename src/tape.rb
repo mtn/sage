@@ -1,12 +1,14 @@
 # Tapes can easily be defined in a single class, but only (imo) at the cost of clarity
 
 class SourceTape
+    attr_reader :tape
+    attr_reader :brackets
+    attr_accessor :pos
 
     def initialize(source)
         @tape = source
         @pos = 0
         @brackets = {}
-        @lstack = []
     end
 
     def advance
@@ -14,22 +16,26 @@ class SourceTape
     end
 
     def parse
+        lstack = []
         for c in @tape
             if c.is_a? LoopStart
-                @lstack.push(@pos)
+                lstack.push(@pos)
             elsif c.is_a? LoopEnd
-                l = @lstack.pop()
+                l = lstack.pop()
                 @brackets[l] = @pos
                 @brackets[@pos] = l
             end
             @pos += 1
         end
-        p @brackets
+        @pos = 0
+        self
     end
 
 end
 
 class DataTape
+    attr_reader :data
+    attr_reader :pivot
 
     def initialize
         @data = Array.new(30000,0)
@@ -61,3 +67,4 @@ class DataTape
     end
 
 end
+
