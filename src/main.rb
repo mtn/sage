@@ -6,7 +6,7 @@ begin
     if ARGV.length > 0
         f = File.open(ARGV[0],'r')
     else
-        raise NoInput, 'No input file'
+        raise NoInputError, 'No input file'
     end
 
     inp = f.read.chomp
